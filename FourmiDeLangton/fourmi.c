@@ -60,23 +60,26 @@ int main(int argc, char *argv[]){
 	
 	int tab[TAILLE][TAILLE] = {0}; // on code 0 = blanc; 1 = noir
 	
-	int k=0;
-
 	SDL_Event event;
 	SDL_bool quit = SDL_FALSE;
 	
 	while(!quit){
-		printf("%d\n",k);
-		k++;
 		while(SDL_PollEvent(&event)){
 			if(event.type==SDL_QUIT){
 				quit=SDL_TRUE;
 			}
 		}
-		if(f->x>=TAILLE || f->x<0 || f->y>=TAILLE || f->y<0){
+		if(f->x>=TAILLE || f->x<0 || f->y>=TAILLE || f->y<0){ // Gestion de la sortie du cadre !
+			// quiter : 
 			//quit=SDL_TRUE;
-			f->x=TAILLE/2;
-			f->y=TAILLE/2;
+			
+			// faire respawn la fourmi au millieu
+			//f->x=TAILLE/2;
+			//f->y=TAILLE/2;
+			
+			// traiter le cadre comme un tore
+			f->x= (f->x+TAILLE)%TAILLE;
+			f->y= (f->y+TAILLE)%TAILLE;
 		}
 		
 		if (tab[f->x][f->y] == 0){ // si on est sur une case blanche
