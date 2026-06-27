@@ -90,15 +90,12 @@ int main(int argc, char *argv[]){
 	
 	SDL_Event event;
 	SDL_bool quit = SDL_FALSE;
-	int k=0;
 	while(!quit){
 		while(SDL_PollEvent(&event)){
 			if(event.type==SDL_QUIT){
 				quit=SDL_TRUE;
 			}
 		}
-		printf("%d\n",k);
-		k++;
 		for(int i=0; i<TAILLE; i++){
 			for(int j=0; j<TAILLE; j++){
 				int temp=compterVoisinsVivants(i,j,tab);
